@@ -87,21 +87,29 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Det nye-nye-bibliotek.dk</h1>
-        <p className={styles.description}>
-          <Link href="/find">
-            <h3
-              style={{
-                color: "black",
-                backgroundColor: "whitesmoke",
-                padding: "10px",
-              }}
-            >
-              Go to search
-            </h3>
-          </Link>
-        </p>
-
-        <img src={heros.image.url} />
+        <Link href="/find">
+          <h3
+            style={{
+              color: "white",
+              backgroundColor: "darkcyan",
+              padding: "20px",
+              maxWidth: "200px",
+              cursor: "pointer",
+              position: "absolute",
+              marginLeft: "auto",
+              marginRight: "auto",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+            }}
+          >
+           Søg
+          </h3>
+        </Link>
+        <img
+          src={heros.image.url}
+          style={{ width: "100vw", height: "500px" }}
+        />
       </main>
 
       <footer className={styles.footer}>
