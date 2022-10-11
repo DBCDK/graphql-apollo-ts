@@ -5,7 +5,8 @@ import styles from "../styles/Home.module.css";
 import { useQuery, gql, DocumentNode } from "@apollo/client";
 import Input from "../components/search/Input";
 import Link from "next/link";
-
+import SearchResult from '../components/SearchResult/SearchResult';
+const dummyData = [{title:'hej'}]
 const Find: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -22,7 +23,7 @@ const Find: NextPage = () => {
 
             }}
           >
-       ⬅️ Go back
+       ⬅️ Tilbage
           </h3>
         </Link>
       <div
@@ -36,6 +37,7 @@ const Find: NextPage = () => {
       >
         <Input />
       </div>
+      <SearchResult data={dummyData} />
     </div>
   );
 };

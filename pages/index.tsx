@@ -86,8 +86,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Det nye-nye-bibliotek.dk</h1>
-        <Link href="/find">
+      <Link href="/find">
           <h3
             style={{
               color: "white",
@@ -103,9 +102,11 @@ const Home: NextPage = () => {
               textAlign: "center",
             }}
           >
-           Søg
+            Søg 🔎
           </h3>
         </Link>
+        <h1 className={styles.title}>Det nye-nye-bibliotek.dk</h1>
+
         <img
           src={heros.image.url}
           style={{ width: "100vw", height: "500px" }}
