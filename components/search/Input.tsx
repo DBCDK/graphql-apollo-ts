@@ -1,19 +1,23 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 
 
+interface Props {
+    searchQuery: string,
+    setSearchQuery: Dispatch<SetStateAction<string>>
+  }
 
-export default function Input({
-}) {
-const [value,setValue] = useState('')
+
+ const Input: FC<Props> =({searchQuery,setSearchQuery}) =>{
+//const [value,setValue] = useState('')
   return (
     <input
     style={{padding:'10px', width:'400px'}}
     id="help-suggester-input"
     type="text"
-    value={value}
+    value={searchQuery}
     onChange={(e)=>{
-        setValue( e.target.value)
+        setSearchQuery( e.target.value)
         console.log(' e.target.value', e.target.value)
 
     }}
@@ -23,3 +27,4 @@ const [value,setValue] = useState('')
   );
 }
 
+export default Input;
