@@ -6,25 +6,24 @@ import { useQuery, gql, DocumentNode } from "@apollo/client";
 import Input from "../components/search/Input";
 import Link from "next/link";
 import SearchResult from "../components/SearchResult/SearchResult";
-import { SEARCH_QUERY } from "../graphql/queries";
+import { SUGGEST_QUERY,SEARCH_QUERY } from "../graphql/queries";
 import { useEffect, useState } from "react";
 const dummyData = [{ title: "hej" }];
 const Find: NextPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const { data, loading, error, refetch } = useQuery(SEARCH_QUERY, {
+  const { data, loading, error, refetch } = useQuery(SUGGEST_QUERY, {
     variables: {
-      q: {
-        all: "",
-      },
+        worktype:null,
+        suggesttype:"TITLE",
+
+      q: "",
       offset: 0,
-      limit: 50,
+      limit: 100,
     },
   });
   useEffect(() => {
      refetch({
-       q: {
-         all: searchQuery,
-       },
+       q: searchQuery,
      });
    }, [searchQuery]);
 
@@ -35,8 +34,8 @@ const Find: NextPage = () => {
     return <h1>Error</h1>;
   }
   const hitcount= data?.search?.hitcount;
-  const works = data?.search?.works;
-
+  const works = data?.suggest?.result?.map((w:any)=>w.work);
+console.log('works',works)
   return (
     <div className={styles.container}>
       <h1>Det nye-nye-bibliotek.dk - Search</h1>

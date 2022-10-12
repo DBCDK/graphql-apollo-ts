@@ -1,0 +1,50 @@
+query SearchQuery ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
+    search(q: $q) {
+        hitcount
+        works(offset: $offset, limit: $limit) {
+          manifestations {
+            first {
+              cover {
+                detail
+                
+              }
+            }
+          }
+          titles {
+            main
+          }
+          creators {
+            display
+          }
+          subjects {
+            dbcVerified {
+              display
+            }
+          }
+        }
+      }
+  }
+
+
+  query SuggestionQuery($q: String!, $worktype: WorkType, $suggesttype: SuggestionType) {
+  suggest(q: $q, workType: $worktype, suggestType: $suggesttype) {
+    result {
+      type
+      work {
+        titles {
+          main
+        }
+        creators {
+          display
+        }
+        manifestations {
+          first {
+            cover {
+              detail
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -27,4 +27,28 @@ query ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
       }
   }
 `;
-export {SEARCH_QUERY};
+
+
+const SUGGEST_QUERY: DocumentNode = gql `query ($q: String!, $worktype: WorkType, $suggesttype: SuggestionType) {
+    suggest(q: $q, workType: $worktype, suggestType: $suggesttype) {
+      result {
+        type
+        work {
+          titles {
+            main
+          }
+          creators {
+            display
+          }
+          manifestations {
+            first {
+              cover {
+                detail
+              }
+            }
+          }
+        }
+      }
+    }
+  }`
+export {SEARCH_QUERY,SUGGEST_QUERY};

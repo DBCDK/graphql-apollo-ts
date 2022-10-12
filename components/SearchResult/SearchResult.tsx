@@ -23,15 +23,16 @@ const Find: FC<Props> = ({ hitcount, data, loading, works }) => {
   }
   return (
     <>
-     { <h1>Search results {`${hitcount}  `}</h1>}
+     { <h1>Search results {` `}</h1>}
 
       <div style={{ display: "grid",  gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
         {works
-          ?.filter((obj) => obj.manifestations.first.cover.detail)
-          .map((obj) => {
+        //  ?.filter((obj) => obj.manifestations.first.cover.detail)
+          ?.map((obj) => {
+              const img = obj.manifestations.first.cover.detail;
             return (
-              <div style={{}}>
-                <img src={obj.manifestations.first.cover.detail} style={{width:'200px'}} />
+              <div style={{width:'200px', height:'300px',  marginBottom:'40px', backgroundColor:'brown', textAlign:'center'}} >
+                <img src={img} style={{width:'200px'}} />
                 <p>{obj.titles.main[0]}</p>
               </div>
             );
