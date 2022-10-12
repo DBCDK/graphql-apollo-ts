@@ -87,25 +87,54 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <div
+        style={{              position: "absolute",
+        marginLeft: "auto",
+        marginRight: "auto",
+        left: 0,
+        right: 0,
+      display:'flex',
+      justifyContent:'space-evenly'
+      }}
+        >
+
+
       <Link href="/find">
           <h3
             style={{
               color: "white",
-              backgroundColor: "darkcyan",
+              backgroundColor: "brown",
               padding: "20px",
-              maxWidth: "200px",
+              width: "200px",
+              height:'70px',
               cursor: "pointer",
-              position: "absolute",
-              marginLeft: "auto",
-              marginRight: "auto",
-              left: 0,
-              right: 0,
+              fontSize:'1.5ren',
               textAlign: "center",
             }}
           >
             Søg 🔎
           </h3>
         </Link>
+
+        <Link href="/search">
+          <h3
+            style={{
+              color: "white",
+              backgroundColor: "darkcyan",
+              padding: "20px",
+              width: "300px",
+              cursor: "pointer",
+              textAlign: "center",
+              position:'relative'
+
+            }}
+          >
+            Søg (med codegen) 🔎
+          </h3>
+        </Link>
+
+        </div>
+
         <h1 className={styles.title}>Det nye-nye-bibliotek.dk</h1>
 
         <img
