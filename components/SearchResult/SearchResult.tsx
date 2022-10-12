@@ -6,6 +6,7 @@ import { useQuery, gql, DocumentNode } from "@apollo/client";
 import Link from "next/link";
 import { SearchItem } from "../../interfaces/globalInterfaces";
 import React, { FC } from "react";
+import { Work } from "../../graphql/generated/schema";
 /*interface Work {
     creators:{displayname: string}[]
     
@@ -14,7 +15,7 @@ interface Props {
   data: SearchItem[];
   hitcount: number;
   loading: boolean;
-  works: any[];
+  works: Work[];
 }
 
 const Find: FC<Props> = ({ hitcount, data, loading, works }) => {

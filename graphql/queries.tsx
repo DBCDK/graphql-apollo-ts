@@ -1,5 +1,5 @@
 import {  gql, DocumentNode } from "@apollo/client";
-
+//not used in code gen
 const SEARCH_QUERY: DocumentNode = gql`
 query ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
     search(q: $q) {

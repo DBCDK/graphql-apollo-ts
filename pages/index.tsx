@@ -72,6 +72,7 @@ const Home: NextPage = () => {
   `;
 
   const { data, loading, error, refetch } = useQuery(FRONT_PAGE_QUERY);
+
   if (loading) return <div>Loading</div>;
   if (error) return <div>error</div>;
   const heros: Hero = parseHero(data);

@@ -1,4 +1,4 @@
-query SearchQuery ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
+query Search ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
     search(q: $q) {
         hitcount
         works(offset: $offset, limit: $limit) {
@@ -26,7 +26,7 @@ query SearchQuery ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
   }
 
 
-  query SuggestionQuery($q: String!, $worktype: WorkType, $suggesttype: SuggestionType) {
+  query Suggestion($q: String!, $worktype: WorkType, $suggesttype: SuggestionType) {
   suggest(q: $q, workType: $worktype, suggestType: $suggesttype) {
     result {
       type
@@ -48,3 +48,31 @@ query SearchQuery ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
     }
   }
 }
+
+
+
+
+
+#query getFrontPage { 
+#  nodeQuery(
+#    filter: {conditions: [{field: "type", value: ["hero_frontpage"]}, {field: "status", value: "1"}]}
+#    sort: [{field: "changed", direction: DESC}]
+#  ) {
+#    entities {
+#      
+#      NodeHeroFrontpage {
+#       nid
+#       title
+#       entityPublished
+#       fieldHeroDescription
+#        fieldImage {
+#         alt
+#         title
+#         url
+#         width
+#         height
+#       }
+#      }
+#   }
+#  }
+#}
