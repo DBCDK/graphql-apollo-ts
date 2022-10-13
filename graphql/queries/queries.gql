@@ -31,6 +31,7 @@ query Search ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
     result {
       type
       work {
+      workId
         titles {
           main
         }
@@ -49,7 +50,35 @@ query Search ($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
   }
 }
 
-
+query getWork ($id: String!) {
+  work(id: $id) {
+    workId
+    titles {
+      full
+    }
+    abstract
+    creators {
+      display
+    }
+    subjects {
+      dbcVerified {
+        display
+      }
+    }
+    workYear
+    workTypes
+    mainLanguages {
+      display
+    }
+    manifestations {
+      latest {
+        cover {
+          detail
+        }
+      }
+    }
+  }
+}
 
 
 

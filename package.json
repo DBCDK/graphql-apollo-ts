@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "graphql-codegen --require dotenv/config"
+    "codegen": "graphql-codegen --require dotenv/config",
+    "codegenw": "graphql-codegen --require dotenv/config --watch"
+
 
   },
   "dependencies": {

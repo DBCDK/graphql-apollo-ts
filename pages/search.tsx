@@ -6,7 +6,6 @@ import { useQuery, gql, DocumentNode } from "@apollo/client";
 import Input from "../components/search/Input";
 import Link from "next/link";
 import SearchResult from "../components/SearchResult/SearchResult";
-import { SUGGEST_QUERY,SEARCH_QUERY } from "../graphql/queries";
 import { useEffect, useState } from "react";
 import { SuggestionType, useSuggestionQuery, Work } from "../graphql/generated/schema";
 const dummyData = [{ title: "hej" }];
@@ -31,16 +30,16 @@ const Find: NextPage = () => {
 
 
   if (error) {
-    console.log("error");
+    console.log("error",error);
     return <h1>Error</h1>;
   }
   if(data?.suggest){
     console.log('title!',data?.suggest?.result[0]?.work?.titles.main[0])
 
   }
-  const hitcount= data?.search?.hitcount; //example of property dosen't exist 
+  const hitcount= data?.search?.hitcount; //example of property that dosen't exist 
+  //const anotherVar = data?.suggest.result[0].work?.creators[0].
   let works: Work[] = data?.suggest?.result?.map((w)=>w.work as Work)!;
-  
   return (
     <div className={styles.container}>
       <h1>Det nye-nye-bibliotek.dk - Search</h1>
@@ -69,7 +68,7 @@ const Find: NextPage = () => {
       >
         <Input searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       </div>
-      <SearchResult data={dummyData} hitcount={hitcount} loading={loading} works={works}/>
+      <SearchResult  hitcount={hitcount} loading={loading} works={works}/>
     </div>
   );
 };

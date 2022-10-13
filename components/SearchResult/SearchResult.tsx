@@ -12,30 +12,48 @@ import { Work } from "../../graphql/generated/schema";
     
 }*/
 interface Props {
-  data: SearchItem[];
   hitcount: number;
   loading: boolean;
   works: Work[];
 }
 
-const Find: FC<Props> = ({ hitcount, data, loading, works }) => {
+// const Find = ({ hitcount,  loading, works }: Props) => { is better syntax than  const Find: FC<Props> = ({ hitcount,  loading, works }) => {
+
+const SearchResult = ({ hitcount, loading, works }: Props) => {
   if (loading) {
     <p>Henter..</p>;
   }
   return (
     <>
-     { <h1>Search results {` `}</h1>}
+      {<h1>Search results {` `}</h1>}
 
-      <div style={{ display: "grid",  gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
         {works
-        //  ?.filter((obj) => obj.manifestations.first.cover.detail)
+          //  ?.filter((obj) => obj.manifestations.first.cover.detail)
           ?.map((obj) => {
-              const img = obj.manifestations.first.cover.detail;
+              console.log('obj',obj)
+            const img = obj.manifestations.first.cover.detail as
+              | string
+              | undefined;
+
+              //typecast variables to string | undefinedd  
             return (
-              <div style={{width:'200px', height:'300px',  marginBottom:'40px', backgroundColor:'brown', textAlign:'center'}} >
-                <img src={img} style={{width:'200px'}} />
+                <Link href={`/work/${obj.workId}`}>
+                
+              <div
+                style={{
+                  width: "200px",
+                  height: "300px",
+                  marginBottom: "40px",
+                  backgroundColor: "brown",
+                  textAlign: "center",
+                }}
+              >
+                <img src={img} style={{ width: "200px" }} />
                 <p>{obj.titles.main[0]}</p>
               </div>
+              </Link>
+
             );
           })}
       </div>
@@ -43,4 +61,4 @@ const Find: FC<Props> = ({ hitcount, data, loading, works }) => {
   );
 };
 
-export default Find;
+export default SearchResult;

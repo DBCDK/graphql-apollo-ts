@@ -1158,7 +1158,14 @@ export type SuggestionQueryVariables = Exact<{
 }>;
 
 
-export type SuggestionQuery = { __typename?: 'Query', suggest: { __typename?: 'SuggestResponse', result: Array<{ __typename?: 'Suggestion', type: SuggestionType, work?: { __typename?: 'Work', titles: { __typename?: 'WorkTitles', main: Array<string> }, creators: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string }>, manifestations: { __typename?: 'Manifestations', first: { __typename?: 'Manifestation', cover: { __typename?: 'Cover', detail?: string | null } } } } | null }> } };
+export type SuggestionQuery = { __typename?: 'Query', suggest: { __typename?: 'SuggestResponse', result: Array<{ __typename?: 'Suggestion', type: SuggestionType, work?: { __typename?: 'Work', workId: string, titles: { __typename?: 'WorkTitles', main: Array<string> }, creators: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string }>, manifestations: { __typename?: 'Manifestations', first: { __typename?: 'Manifestation', cover: { __typename?: 'Cover', detail?: string | null } } } } | null }> } };
+
+export type GetWorkQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type GetWorkQuery = { __typename?: 'Query', work?: { __typename?: 'Work', workId: string, abstract?: Array<string> | null, workYear?: string | null, workTypes: Array<WorkType>, titles: { __typename?: 'WorkTitles', full: Array<string> }, creators: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string }>, subjects: { __typename?: 'SubjectContainer', dbcVerified: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string } | { __typename?: 'SubjectText', display: string } | { __typename?: 'TimePeriod', display: string }> }, mainLanguages: Array<{ __typename?: 'Language', display: string }>, manifestations: { __typename?: 'Manifestations', latest: { __typename?: 'Manifestation', cover: { __typename?: 'Cover', detail?: string | null } } } } | null };
 
 
 export const SearchDocument = gql`
@@ -1224,6 +1231,7 @@ export const SuggestionDocument = gql`
     result {
       type
       work {
+        workId
         titles {
           main
         }
@@ -1272,3 +1280,62 @@ export function useSuggestionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type SuggestionQueryHookResult = ReturnType<typeof useSuggestionQuery>;
 export type SuggestionLazyQueryHookResult = ReturnType<typeof useSuggestionLazyQuery>;
 export type SuggestionQueryResult = Apollo.QueryResult<SuggestionQuery, SuggestionQueryVariables>;
+export const GetWorkDocument = gql`
+    query getWork($id: String!) {
+  work(id: $id) {
+    workId
+    titles {
+      full
+    }
+    abstract
+    creators {
+      display
+    }
+    subjects {
+      dbcVerified {
+        display
+      }
+    }
+    workYear
+    workTypes
+    mainLanguages {
+      display
+    }
+    manifestations {
+      latest {
+        cover {
+          detail
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetWorkQuery__
+ *
+ * To run a query within a React component, call `useGetWorkQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetWorkQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetWorkQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetWorkQuery(baseOptions: Apollo.QueryHookOptions<GetWorkQuery, GetWorkQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetWorkQuery, GetWorkQueryVariables>(GetWorkDocument, options);
+      }
+export function useGetWorkLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetWorkQuery, GetWorkQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetWorkQuery, GetWorkQueryVariables>(GetWorkDocument, options);
+        }
+export type GetWorkQueryHookResult = ReturnType<typeof useGetWorkQuery>;
+export type GetWorkLazyQueryHookResult = ReturnType<typeof useGetWorkLazyQuery>;
+export type GetWorkQueryResult = Apollo.QueryResult<GetWorkQuery, GetWorkQueryVariables>;
