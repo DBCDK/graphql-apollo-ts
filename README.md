@@ -1,8 +1,10 @@
-# Code Gen
+# GraphQL, Apollo Client, CodeGen and NextJS with TypeScript 
+
+## Code Gen
 Generates TypeScript types from graphql which results in end-to-end type saftey 
 [Read more](https://www.the-guild.dev/graphql/codegen)
 
-Code gen will look at any .graphql or .gql file inside the /graphql/queries folder.
+Code gen will look at any .graphql or .gql file inside the `/graphql/queries` folder.
 
 
 CodeGen configuration -> codegen.yml
@@ -15,13 +17,14 @@ npm run codegenw
 npm run dev
 # Will also run "npm run codegen" on start 
 ```
+## Apollo Client & code gen
+A hook will be generated for each query inside `graphql/queries`. The hook can be imported from graphql/generated/schema.ts. 
+See `pages/work/[id].tsx` for an example. useGetWorkQuery()
 
-
-
-# Next
+## Next
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+### Getting Started
 
 First, run the development server:
 
@@ -39,7 +42,7 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+### Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -48,7 +51,7 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+### Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
