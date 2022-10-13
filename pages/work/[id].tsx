@@ -57,21 +57,39 @@ const WorkPage: NextPage = () => {
           display: "flex",
           justifyContent: "space-evenly",
           paddingTop: "40px",
-          paddingBottom: "30px",
-          borderBottom: "1px solid white",
+          paddingBottom: "70px",
+          borderTop: "1px solid white",
         }}
       >
-        {img ? (
+        <div
+          style={{
+            width: "300px",
+            height: "450px",
+            marginBottom: "40px",
+            backgroundColor: "brown",
+            textAlign: "center",
+            cursor: "pointer",
+          }}
+        >
           <img src={img} style={{ width: "300px" }} />
-        ) : (
-          <p>ingen forside</p>
-        )}
+          <p>
+            <b> {data?.work?.titles?.full[0]} </b>
+          </p>
+          <p>{data?.work?.creators.map((c) => c.display).join(", ")}</p>
+        </div>
+
         <div style={{ maxWidth: "400px" }}>
           <h2> {data?.work?.titles?.full[0]}</h2>
 
-          <p>{data?.work?.abstract[0]}</p>
-          <p>{data?.work?.mainLanguages[0]?.display}</p>
-          <p><b>Subjects: </b>{data?.work?.subjects.all.map(s=>s.display).join(', ')}</p>
+          <p>{data?.work?.abstract ? data?.work?.abstract[0] : ""}</p>
+          <p>
+            {" "}
+            Sprog: {data?.work?.mainLanguages[0]?.display.toLocaleUpperCase()}
+          </p>
+          <p>
+            <b>Subjects: </b>
+            {data?.work?.subjects.all.map((s) => s.display).join(", ")}
+          </p>
         </div>
       </div>
     </div>
