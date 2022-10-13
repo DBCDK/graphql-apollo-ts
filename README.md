@@ -1,3 +1,24 @@
+# Code Gen
+Generates TypeScript types from graphql which results in end-to-end type saftey 
+[Read more](https://www.the-guild.dev/graphql/codegen)
+
+Code gen will look at any .graphql or .gql file inside the /graphql/queries folder.
+
+
+CodeGen configuration -> codegen.yml
+
+```bash
+npm run codegen
+#will generate new graphql/generated/schema.ts file
+npm run codegenw
+#will generate new graphql/generated/schema.ts and watch for changes in .graphql and .gql files
+npm run dev
+# Will also run "npm run codegen" on start 
+```
+
+
+
+# Next
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

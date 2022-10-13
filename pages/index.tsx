@@ -36,7 +36,7 @@ export function parseHero(data: any): Hero {
     }
   );
 }
-
+//Codegen is not used here. Only apollo 
 const Home: NextPage = () => {
   const FRONT_PAGE_QUERY: DocumentNode = gql`
     {
