@@ -103,7 +103,7 @@ const Home: NextPage = () => {
           <h3
             style={{
               color: "white",
-              backgroundColor: "brown",
+              backgroundColor: "darkcyan",
               padding: "20px",
               width: "200px",
               height:'70px',
@@ -116,22 +116,6 @@ const Home: NextPage = () => {
           </h3>
         </Link>
 
-        <Link href="/search">
-          <h3
-            style={{
-              color: "white",
-              backgroundColor: "darkcyan",
-              padding: "20px",
-              width: "300px",
-              cursor: "pointer",
-              textAlign: "center",
-              position:'relative'
-
-            }}
-          >
-            Søg (med codegen) 🔎
-          </h3>
-        </Link>
 
         </div>
 

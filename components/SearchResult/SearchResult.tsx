@@ -47,6 +47,7 @@ const SearchResult = ({ hitcount, loading, works }: Props) => {
                   marginBottom: "40px",
                   backgroundColor: "brown",
                   textAlign: "center",
+                  cursor:'pointer'
                 }}
               >
                 <img src={img} style={{ width: "200px" }} />

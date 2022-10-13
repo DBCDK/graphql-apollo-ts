@@ -1165,7 +1165,7 @@ export type GetWorkQueryVariables = Exact<{
 }>;
 
 
-export type GetWorkQuery = { __typename?: 'Query', work?: { __typename?: 'Work', workId: string, abstract?: Array<string> | null, workYear?: string | null, workTypes: Array<WorkType>, titles: { __typename?: 'WorkTitles', full: Array<string> }, creators: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string }>, subjects: { __typename?: 'SubjectContainer', dbcVerified: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string } | { __typename?: 'SubjectText', display: string } | { __typename?: 'TimePeriod', display: string }> }, mainLanguages: Array<{ __typename?: 'Language', display: string }>, manifestations: { __typename?: 'Manifestations', latest: { __typename?: 'Manifestation', cover: { __typename?: 'Cover', detail?: string | null } } } } | null };
+export type GetWorkQuery = { __typename?: 'Query', work?: { __typename?: 'Work', workId: string, abstract?: Array<string> | null, workYear?: string | null, workTypes: Array<WorkType>, subjects: { __typename?: 'SubjectContainer', all: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string } | { __typename?: 'SubjectText', display: string } | { __typename?: 'TimePeriod', display: string }>, dbcVerified: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string } | { __typename?: 'SubjectText', display: string } | { __typename?: 'TimePeriod', display: string }> }, titles: { __typename?: 'WorkTitles', full: Array<string> }, creators: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string }>, mainLanguages: Array<{ __typename?: 'Language', display: string }>, manifestations: { __typename?: 'Manifestations', first: { __typename?: 'Manifestation', cover: { __typename?: 'Cover', detail?: string | null } } } } | null };
 
 
 export const SearchDocument = gql`
@@ -1283,6 +1283,11 @@ export type SuggestionQueryResult = Apollo.QueryResult<SuggestionQuery, Suggesti
 export const GetWorkDocument = gql`
     query getWork($id: String!) {
   work(id: $id) {
+    subjects {
+      all {
+        display
+      }
+    }
     workId
     titles {
       full
@@ -1302,7 +1307,7 @@ export const GetWorkDocument = gql`
       display
     }
     manifestations {
-      latest {
+      first {
         cover {
           detail
         }

@@ -6,37 +6,45 @@ import { useQuery, gql, DocumentNode } from "@apollo/client";
 import Input from "../components/search/Input";
 import Link from "next/link";
 import SearchResult from "../components/SearchResult/SearchResult";
-import { SUGGEST_QUERY, SEARCH_QUERY } from "../graphql/queries";
 import { useEffect, useState } from "react";
-const dummyData = [{ title: "hej" }];
+import {
+  SuggestionType,
+  useSuggestionQuery,
+  Work,
+} from "../graphql/generated/schema";
 const Find: NextPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const { data, loading, error, refetch } = useQuery(SUGGEST_QUERY, {
+  const { data, loading, error, refetch } = useSuggestionQuery({
     variables: {
       worktype: null,
-      suggesttype: "TITLE",
-
+      suggesttype: SuggestionType.Title,
       q: "",
-      offset: 0,
-      limit: 100,
     },
   });
+
+
+
   useEffect(() => {
+
+    const q:string = searchQuery.length>0 ?searchQuery :'fodbold'; 
     refetch({
-      q: searchQuery,
+      q:q 
     });
   }, [searchQuery]);
 
   if (error) {
-    console.log("error");
+    console.log("error", error);
     return <h1>Error</h1>;
   }
-  const hitcount = data?.search?.hitcount;
-  const works = data?.suggest?.result?.map((w: any) => w.work);
-  console.log("works", works);
+  if (data?.suggest) {
+    console.log("title!", data?.suggest?.result[0]?.work?.titles.main[0]);
+  }
+  const hitcount = data?.search?.hitcount; //example of property that dosen't exist
+  //const anotherVar = data?.suggest.result[0].work?.creators[0].
+  let works: Work[] = data?.suggest?.result?.map((w) => w.work as Work)!;
   return (
     <div className={styles.container}>
-      <h1>Det nye-nye-bibliotek.dk - Search</h1>
+      <h1>Det nye-nye-bibliotek.dk - find</h1>
       <Link href="/">
         <h3
           style={{
@@ -62,12 +70,7 @@ const Find: NextPage = () => {
       >
         <Input searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       </div>
-      <SearchResult
-      //  data={dummyData}
-        hitcount={hitcount}
-        loading={loading}
-        works={works}
-      />
+      <SearchResult hitcount={hitcount} loading={loading} works={works} />
     </div>
   );
 };
