@@ -1,13 +1,19 @@
 # GraphQL, Apollo Client, CodeGen and NextJS with TypeScript 
+## Enviorment
+NEXT_PUBLIC_ACCESS_TOKEN should be set inside a .env.local file
+```
 
-## Code Gen
-Generates TypeScript types from graphql which results in end-to-end type saftey 
+NEXT_PUBLIC_ACCESS_TOKEN = token
+
+```
+## CodeGen
+* Generates TypeScript types from graphql which results in end-to-end type saftey 
 [Read more](https://www.the-guild.dev/graphql/codegen)
 
-Code gen will look at any .graphql or .gql file inside the `/graphql/queries` folder.
+* Codegen will look at any .graphql or .gql file inside the `/graphql/queries` folder.
 
 
-CodeGen configuration -> codegen.yml
+* CodeGen configuration -> codegen.yml
 
 ```bash
 npm run codegen
@@ -17,10 +23,17 @@ npm run codegenw
 npm run dev
 # Will also run "npm run codegen" on start 
 ```
-## Apollo Client & code gen
+
+* [This VS Code extension](https://marketplace.visualstudio.com/items?itemName=capaj.graphql-codegen-vscode) will auto generate the schema.ts file every time you hit save inside .gql or .graphql file.
+
+* `pages/index.tsx` does not use CodeGen files. Only Apollo Client.
+
+---
+## Apollo Client & Codegen
 A hook will be generated for each query inside `graphql/queries`. The hook can be imported from graphql/generated/schema.ts. 
 See `pages/work/[id].tsx` for an example. useGetWorkQuery()
 
+---
 ## Next
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
