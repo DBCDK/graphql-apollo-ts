@@ -1167,6 +1167,13 @@ export type GetWorkQueryVariables = Exact<{
 
 export type GetWorkQuery = { __typename?: 'Query', work?: { __typename?: 'Work', workId: string, abstract?: Array<string> | null, workYear?: string | null, workTypes: Array<WorkType>, subjects: { __typename?: 'SubjectContainer', all: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string } | { __typename?: 'SubjectText', display: string } | { __typename?: 'TimePeriod', display: string }>, dbcVerified: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string } | { __typename?: 'SubjectText', display: string } | { __typename?: 'TimePeriod', display: string }> }, titles: { __typename?: 'WorkTitles', full: Array<string> }, creators: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string }>, mainLanguages: Array<{ __typename?: 'Language', display: string }>, manifestations: { __typename?: 'Manifestations', first: { __typename?: 'Manifestation', cover: { __typename?: 'Cover', detail?: string | null } } } } | null };
 
+export type KasperQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type KasperQuery = { __typename?: 'Query', work?: { __typename?: 'Work', workId: string, abstract?: Array<string> | null, workYear?: string | null, workTypes: Array<WorkType>, subjects: { __typename?: 'SubjectContainer', all: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string } | { __typename?: 'SubjectText', display: string } | { __typename?: 'TimePeriod', display: string }>, dbcVerified: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string } | { __typename?: 'SubjectText', display: string } | { __typename?: 'TimePeriod', display: string }> }, titles: { __typename?: 'WorkTitles', full: Array<string> }, creators: Array<{ __typename?: 'Corporation', display: string } | { __typename?: 'Person', display: string }>, mainLanguages: Array<{ __typename?: 'Language', display: string }>, manifestations: { __typename?: 'Manifestations', first: { __typename?: 'Manifestation', cover: { __typename?: 'Cover', detail?: string | null } } } } | null };
+
 
 export const SearchDocument = gql`
     query Search($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
@@ -1344,3 +1351,67 @@ export function useGetWorkLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetWorkQueryHookResult = ReturnType<typeof useGetWorkQuery>;
 export type GetWorkLazyQueryHookResult = ReturnType<typeof useGetWorkLazyQuery>;
 export type GetWorkQueryResult = Apollo.QueryResult<GetWorkQuery, GetWorkQueryVariables>;
+export const KasperDocument = gql`
+    query kasper($id: String!) {
+  work(id: $id) {
+    subjects {
+      all {
+        display
+      }
+    }
+    workId
+    titles {
+      full
+    }
+    abstract
+    creators {
+      display
+    }
+    subjects {
+      dbcVerified {
+        display
+      }
+    }
+    workYear
+    workTypes
+    mainLanguages {
+      display
+    }
+    manifestations {
+      first {
+        cover {
+          detail
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useKasperQuery__
+ *
+ * To run a query within a React component, call `useKasperQuery` and pass it any options that fit your needs.
+ * When your component renders, `useKasperQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useKasperQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useKasperQuery(baseOptions: Apollo.QueryHookOptions<KasperQuery, KasperQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<KasperQuery, KasperQueryVariables>(KasperDocument, options);
+      }
+export function useKasperLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<KasperQuery, KasperQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<KasperQuery, KasperQueryVariables>(KasperDocument, options);
+        }
+export type KasperQueryHookResult = ReturnType<typeof useKasperQuery>;
+export type KasperLazyQueryHookResult = ReturnType<typeof useKasperLazyQuery>;
+export type KasperQueryResult = Apollo.QueryResult<KasperQuery, KasperQueryVariables>;

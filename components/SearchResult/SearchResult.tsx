@@ -12,7 +12,7 @@ import { Work } from "../../graphql/generated/schema";
     
 }*/
 interface Props {
-  hitcount: number;
+  hitcount?: number;
   loading: boolean;
   works: Work[];
 }

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { useEffect, useState } from "react";
-import { useGetWorkQuery, Work } from "../../graphql/generated/schema";
+import { useGetWorkQuery, useKasperQuery, Work } from "../../graphql/generated/schema";
 
 const dummyData = [{ title: "hej" }];
 const WorkPage: NextPage = () => {
@@ -32,7 +32,8 @@ const WorkPage: NextPage = () => {
   }
   console.log("workdpage data : ", data?.work);
 
-  const img: string = data?.work?.manifestations.first.cover.detail;
+  const img: string = data?.work?.manifestations?.first?.cover.detail as string;
+  console.log('img',img)
   return (
     <div className={styles.container}>
       <h1>Det nye-nye-bibliotek.dk - WorkPage </h1>
@@ -46,6 +47,7 @@ const WorkPage: NextPage = () => {
             maxWidth: "150px",
             cursor: "pointer",
             textAlign: "center",
+            borderRadius:'15px'
           }}
         >
           ⬅️ Tilbage

@@ -55,6 +55,7 @@ query getWork($id: String!) {
   work(id: $id) {
     subjects {
       all {
+
         display
       }
     }
@@ -110,3 +111,38 @@ query getWork($id: String!) {
 #   }
 #  }
 #}
+query kasper($id: String!) {
+  work(id: $id) {
+    subjects {
+      all {
+
+        display
+      }
+    }
+    workId
+    titles {
+      full
+    }
+    abstract
+    creators {
+      display
+    }
+    subjects {
+      dbcVerified {
+        display
+      }
+    }
+    workYear
+    workTypes
+    mainLanguages {
+      display
+    }
+    manifestations {
+      first {
+        cover {
+          detail
+        }
+      }
+    }
+  }
+}

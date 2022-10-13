@@ -104,12 +104,12 @@ const Home: NextPage = () => {
             style={{
               color: "white",
               backgroundColor: "darkcyan",
-              padding: "20px",
-              width: "200px",
-              height:'70px',
+              padding: '20px 70px',
+
               cursor: "pointer",
-              fontSize:'1.5ren',
               textAlign: "center",
+              fontSize: '35px',
+              borderRadius:'15px'
             }}
           >
             Søg 🔎
@@ -123,7 +123,7 @@ const Home: NextPage = () => {
 
         <img
           src={heros.image.url}
-          style={{ width: "100vw", height: "500px" }}
+          style={{ width: heros.image.width, height: heros.image.height }}
         />
       </main>
 
