@@ -128,3 +128,6 @@
     filter: invert(1);
   }
 }
+.aria .row{
+margin-bottom: 10px;
+}

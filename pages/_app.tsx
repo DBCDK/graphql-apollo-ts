@@ -6,6 +6,8 @@ import {
   ApolloProvider,
   gql,
 } from "@apollo/client";
+import 'bootstrap/dist/css/bootstrap.css'
+
 const accessToken = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
 console.log('accessToken',accessToken)
 const client = new ApolloClient({
