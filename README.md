@@ -1,5 +1,7 @@
 # GraphQL, Apollo Client, CodeGen and NextJS with TypeScript 
 ## Enviorment
+FBI-api token:
+
 NEXT_PUBLIC_ACCESS_TOKEN should be set inside a .env.local file
 ```
 
